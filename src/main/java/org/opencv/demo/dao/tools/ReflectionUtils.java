@@ -130,7 +130,7 @@ public class ReflectionUtils {
 		try {
 			return method.invoke(object, parameters);
 		} catch(IllegalAccessException e) {
-			System.out.println("不可能抛出的异常");
+			System.out.println("");
 		} 
 		
 		return null;
@@ -153,7 +153,7 @@ public class ReflectionUtils {
 		try {
 			field.set(object, value);
 		} catch (IllegalAccessException e) {
-			System.out.println("不可能抛出的异常");
+			System.out.println("");
 		}
 	}
 	
@@ -176,7 +176,7 @@ public class ReflectionUtils {
 		try {
 			result = field.get(object);
 		} catch (IllegalAccessException e) {
-			System.out.println("不可能抛出的异常");
+			System.out.println("");
 		}
 		
 		return result;
