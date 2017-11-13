@@ -179,21 +179,24 @@ public class OpenCvDemo extends JFrame {
 
     public static void main(String[] args) throws Exception {
 //        JDBCTools.getConnection();
-        Student student = new Student();
-        student.setStudentId(2314765);
-        student.setDateBirth(new Date(2017));
-        student.setDateEnrollment("2017");
-        student.setFirstName("zhu");
-        student.setLastName("junxue");
-        student.setGender("male");
-        student.setProgram("MISM");
+//        Student student = new Student();
+//        student.setStudentId(2314765);
+//        student.setDateBirth(new Date(2017));
+//        student.setDateEnrollment("2017");
+//        student.setFirstName("zhu");
+//        student.setLastName("junxue");
+//        student.setGender("male");
+//        student.setProgram("MISM");
+//
+//        StudentService studentService = new StudentServiceImpl();
+//        Student student1 = studentService.getEntity(2314765);
+//        System.out.println(student1);
 
-        StudentService studentService = new StudentServiceImpl();
-        Student student1 = studentService.getEntity(2314765);
-        System.out.println(student1);
+
         //--------------------------------------------
-//        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-//        new OpenCvDemo();
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+        new OpenCvDemo();
         //--------------------------------------------
+
     }
 }
