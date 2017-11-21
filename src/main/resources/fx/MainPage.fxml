@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/theme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.MainPageController">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutX="187.0" layoutY="73.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.13556485355648537" layoutX="107.0" layoutY="68.0" orientation="VERTICAL" prefHeight="398.0" prefWidth="406.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" styleClass="background" stylesheets="@css/theme.css">
+                           <children>
+                              <Label alignment="CENTER" cacheShape="false" layoutX="70.0" layoutY="33.0" styleClass="label-header" text="Carnegie Mellon University Student Recognition System" textFill="#9d2222" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="687.0" prefWidth="671.0" />
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="799.3333333333334" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.75" orientation="VERTICAL" prefHeight="396.0" prefWidth="596.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="12.0" prefWidth="141.0">
+                                       <children>
+                                          <ImageView fx:id="photo" fitHeight="293.0" fitWidth="355.0" layoutX="121.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.3333333333333144" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="131.0" prefWidth="315.0" styleClass="background" stylesheets="@css/theme.css">
+                                       <children>
+                                          <Label layoutX="219.0" layoutY="33.0" styleClass="label-header" stylesheets="@css/theme.css" text="Student/Stranger" />
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <GridPane layoutX="35.0" layoutY="18.0" prefHeight="306.0" prefWidth="493.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="119.33331298828125" minWidth="10.0" prefWidth="99.99993896484375" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.66668701171875" minWidth="10.0" prefWidth="148.00006103515625" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text fx:id="last" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DOB" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" GridPane.rowIndex="4" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Program" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last time of visit" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total visit times" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reason for visit" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <ChoiceBox fx:id="reason" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <Text fx:id="first" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enrollment Year" GridPane.columnIndex="2" />
+                                    <Text fx:id="studentIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
+                                    <Text fx:id="dob" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Text fx:id="enrollmentYear" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" />
+                                    <Text fx:id="program" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Text fx:id="lastVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Text fx:id="totalVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Text fx:id="gender" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <TextField fx:id="reasonField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <Text fx:id="reasonText" strokeType="OUTSIDE" strokeWidth="0.0" text="                       Please specify the reason" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="14.0" layoutY="332.0" prefHeight="33.0" prefWidth="567.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.33335367838544" minWidth="10.0" prefWidth="126.99997965494792" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="206.33333333333337" minWidth="10.0" prefWidth="177.00002034505206" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.66668701171875" minWidth="10.0" prefWidth="133.66666666666669" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.3333740234375" minWidth="10.0" prefWidth="129.00000000000006" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Button fx:id="newStudentButton" mnemonicParsing="false" onAction="#newStudentButtonAction" prefHeight="40.0" prefWidth="134.0" text="New student" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Button fx:id="approveButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="148.0" stylesheets="@css/theme.css" text="Approved" GridPane.rowIndex="2" />
+                                    <Button fx:id="changeStudentButton" mnemonicParsing="false" onAction="#changeStudentButtonAction" prefHeight="33.0" prefWidth="180.0" text="Manual Adjustment" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Button fx:id="newGuestButton" mnemonicParsing="false" onAction="#setNewGuestButton" prefHeight="33.0" prefWidth="154.0" text="New guest" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

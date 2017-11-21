@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.GuestPageController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <children>
+      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="100.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Pictures/DD%20headshot.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="save" layoutX="313.0" layoutY="528.0" mnemonicParsing="false" onAction="#saveText" text="SAVE" />
+      <GridPane layoutX="42.0" layoutY="169.0" prefHeight="340.0" prefWidth="342.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ChoiceBox fx:id="reason" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Guest ID" />
+            <TextField fx:id="last" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </TextField>
+            <Label text="First name" GridPane.rowIndex="1" />
+            <TextField fx:id="first" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Last name" GridPane.rowIndex="2" />
+            <Label text="Gender" GridPane.rowIndex="3" />
+            <TextField fx:id="guestID" GridPane.columnIndex="1" />
+            <Label text="Reason for visiting" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="gender" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <Button fx:id="clear" layoutX="43.0" layoutY="528.0" mnemonicParsing="false" onAction="#clearText" text="CLEAR" />
+   </children>
+</AnchorPane>

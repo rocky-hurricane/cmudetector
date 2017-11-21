@@ -19,10 +19,16 @@ public class Utils {
     }
 
 
-    public static Map<String, String[]> loadClassifiers(String dataDirectoryName) throws URISyntaxException {
 
+    /**
+     * @param dataDirectoryName       * @param dataDirectoryName
+     * @return return all files in the haarcascades directory.
+     * @throws URISyntaxException
+     */
+    public static Map<String, String[]> loadClassifiers(String dataDirectoryName) throws URISyntaxException {
         Map<String, String[]> classifiers = new HashMap<>();
         URL dir_url = ClassLoader.getSystemResource(dataDirectoryName);
+        // file:/Users/rocky/CMU/SEMESTER1/JAVA/ASSIGNMENT/groupProject/cmu_detector/target/classes/data
         File dir = new File(dir_url.toURI());
         for (String dirName: dir.list()) {
             File file = new File(ClassLoader.getSystemResource(dataDirectoryName + File.separator + dirName).toURI());
@@ -30,6 +36,7 @@ public class Utils {
                 classifiers.put(file.getName(), file.list());
             }
         }
+        // key="haarcascades" value=all files in the directory.
         return classifiers;
     }
 

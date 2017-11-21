@@ -71,9 +71,10 @@ public class WebcamPanel extends JPanel {
 
         @Override
         protected Object doInBackground() throws Exception {
-            System.out.println("-------"+capturedImage+"-------");
 
-            while (! isCancelled()) {
+            System.out.println("-------" + capturedImage + "-------");
+
+            while (!isCancelled()) {
 
 
                 // reads images from webcam
@@ -88,7 +89,7 @@ public class WebcamPanel extends JPanel {
                     WebcamPanel.this.updateImage(capturedImage);
                 }
             }
-          return null;
+            return null;
         }
     }
 }
