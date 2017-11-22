@@ -1,11 +1,15 @@
 package org.opencv.demo.misc;
 
+import javafx.scene.image.Image;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfByte;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
@@ -46,5 +50,21 @@ public class ImageUtils {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * concert Mat into Image
+     * @param frame
+     * @return
+     */
+    public static Image mat2Image(Mat frame)
+    {
+        // create a temporary buffer
+        MatOfByte buffer = new MatOfByte();
+        // encode the frame in the buffer, according to the PNG format
+        Imgcodecs.imencode(".png", frame, buffer);
+        // build and return an Image created from the image encoded in the
+        // buffer
+        return new Image(new ByteArrayInputStream(buffer.toArray()));
     }
 }

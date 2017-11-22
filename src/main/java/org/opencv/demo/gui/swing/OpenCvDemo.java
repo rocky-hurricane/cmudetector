@@ -45,13 +45,13 @@ public class OpenCvDemo extends JFrame {
         setJMenuBar(createMenuBar());
 
         // main panels
-        consoleOutputTextArea = new JTextArea(Constants.OPENCVDEMO_COMPLETE);
-        consoleOutputTextArea.setEditable(false);
+//        consoleOutputTextArea = new JTextArea(Constants.OPENCVDEMO_COMPLETE);
+//        consoleOutputTextArea.setEditable(false);
         webcamPanel = new WebcamPanel(logger, detectorsManager);
         webcamPanel.startCamera();
-
+//
         JScrollPane consoleScrollPane = new JScrollPane(consoleOutputTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        consoleScrollPane.setWheelScrollingEnabled(true);
+//        consoleScrollPane.setWheelScrollingEnabled(true);
 
         // creates the divider for the two panes
         JSplitPane spDivider = new JSplitPane(JSplitPane.VERTICAL_SPLIT, webcamPanel, consoleScrollPane);
@@ -172,26 +172,12 @@ public class OpenCvDemo extends JFrame {
         }
     }
 
-    public void consoleLog(String message) {
-        consoleOutputTextArea.append("\n" + message);
-        consoleOutputTextArea.repaint();
-    }
+//    public void consoleLog(String message) {
+//        consoleOutputTextArea.append("\n" + message);
+//        consoleOutputTextArea.repaint();
+//    }
 
     public static void main(String[] args) throws Exception {
-//        JDBCTools.getConnection();
-//        Student student = new Student();
-//        student.setStudentId(2314765);
-//        student.setDateBirth(new Date(2017));
-//        student.setDateEnrollment("2017");
-//        student.setFirstName("zhu");
-//        student.setLastName("junxue");
-//        student.setGender("male");
-//        student.setProgram("MISM");
-//
-//        StudentService studentService = new StudentServiceImpl();
-//        Student student1 = studentService.getEntity(2314765);
-//        System.out.println(student1);
-
 
         //--------------------------------------------
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);

@@ -8,8 +8,17 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import org.opencv.core.Mat;
+import org.opencv.demo.core.DetectorsManager;
+import org.opencv.demo.gui.Utils;
+import org.opencv.demo.misc.Constants;
+import org.opencv.demo.misc.FxLogger;
+import org.opencv.demo.misc.ImageUtils;
+import org.opencv.videoio.VideoCapture;
+import org.opencv.videoio.Videoio;
 
 import java.sql.*;
+import java.util.Map;
 
 
 public class MainPageController {
@@ -48,6 +57,52 @@ public class MainPageController {
     @FXML
     Button newGuestButton;
 
+    private final VideoCapture camera = new VideoCapture();
+    private Mat capturedImage = new Mat();
+    private FxLogger fxLogger = new FxLogger();
+
+    @FXML
+    public void initialize() throws Exception {
+
+        final Map<String, String[]> classifiersNames = Utils.loadClassifiers(Constants.CLASSIFIERS_PATH);
+        DetectorsManager detectorsManager= new DetectorsManager(fxLogger);
+
+
+        camera.open(0) ;
+        camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, 352);
+        camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, 288);
+
+        // reads images from webcam
+        camera.read(capturedImage);
+
+        if (!capturedImage.empty()) {
+
+            // for recognizing a face, we need the face classifier only
+            detectorsManager.clear();
+            detectorsManager.addDetector(Constants.DEFAULT_FACE_CLASSIFIER);
+            boolean isActive = detectorsManager.changeRecognizerStatus();
+            // get the image potentially transformed by one or more detectors
+            capturedImage = detectorsManager.detect(capturedImage);
+
+            System.out.println("-=-=-=-=-=-=-=-=-=-"+ImageUtils.mat2Image(capturedImage));
+            this.photo.setImage(ImageUtils.mat2Image(capturedImage));
+        }
+
+
+
+        //---------------------------zahir start---------------------------
+        reason.setItems(FXCollections.observableArrayList(
+                "no specific reason", "stapler", "tuition fees", "complaints", "collect assignments", "meet prople", "others"));
+        reason.setValue("no specific reason");
+        choice();
+
+//        photo.setImage(new Image("http://www.marutaro.tw/marutaro/home/home_bg_M_down_photo.png"));
+        showPersonDetails("6666");
+        reasonField.setVisible(false);
+        reasonText.setVisible(false);
+
+        //---------------------------zahir end---------------------------
+    }
 
     private void showPersonDetails(String studentID) {
         String url = "jdbc:derby:StudentInfoDB";
@@ -108,18 +163,15 @@ public class MainPageController {
                 );
     }
 
+    //------------------------rocky start------------------------------//
 
 
-        @FXML
-    public void initialize(){
-        reason.setItems(FXCollections.observableArrayList(
-                "no specific reason", "stapler", "tuition fees", "complaints", "collect assignments", "meet prople", "others"));
-        reason.setValue("no specific reason");
-        choice();
 
-        photo.setImage(new Image("http://www.marutaro.tw/marutaro/home/home_bg_M_down_photo.png"));
-        showPersonDetails("6666");
-        reasonField.setVisible(false);
-        reasonText.setVisible(false);
-    }
+
+
+    //------------------------rocky   end------------------------------//
+
+
+
+
 }

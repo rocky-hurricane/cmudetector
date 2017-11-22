@@ -11,6 +11,6 @@ public class SwingLogger implements Loggable {
     }
 
     public void log(String message) {
-        openCvDemo.consoleLog(message);
+//        openCvDemo.consoleLog(message);
     }
 }

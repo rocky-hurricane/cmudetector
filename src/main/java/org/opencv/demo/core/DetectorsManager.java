@@ -31,6 +31,7 @@ public class DetectorsManager {
         init();
     }
 
+
     public void init() {
 
         // defines colors for drawing the frame for detected elements
@@ -53,6 +54,7 @@ public class DetectorsManager {
         // loops over all the activated detectors
         for (ElementsDetector detector: detectors.values()) {
 
+            System.out.println("detector--"+detector);
             // gets the elements detected by this detector
             detectedElements = detector.detectElements(capturedImage);
             for (DetectedElement detectedElement: detectedElements) {
@@ -75,7 +77,7 @@ public class DetectorsManager {
                         int percentage = (int)(100 * (Constants.FACE_RECOGNITION_THRESHOLD - recognizedFace.getConfidence()) / Constants.FACE_RECOGNITION_THRESHOLD);
                         name = recognizedFace.getName() + "  [" + percentage + "%]";
                     }
-
+                    System.out.println("name+++++++:"+name);
                     // writes the name of the recognized person (sort of embossed)
                     Point position = detectedElement.getPosition();
                     position.y -= 11;
@@ -95,6 +97,7 @@ public class DetectorsManager {
     public void addDetector(String detectorName) {
         counter ++;
         ElementsDetector detector = new ElementsDetector(detectorName, logger, colors[counter%colors.length]);
+        System.out.println("detectorName-=-=-=-=-=-="+detectorName);
         detectors.put(detectorName, detector);
     }
 

@@ -25,7 +25,7 @@ public class WebcamPanel extends JPanel {
 
     public void startCamera() {
         new PanelUpdater().execute();
-        logger.log("Started camera.");
+        logger.log("---Started camera.");
     }
 
     @Override

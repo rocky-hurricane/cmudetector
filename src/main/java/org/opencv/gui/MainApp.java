@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.opencv.core.Core;
 
 import static javafx.application.Application.launch;
 
@@ -19,6 +20,8 @@ public class MainApp extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 
         Parent root = FXMLLoader.load(getClass().getResource("/fx/MainPage.fxml"));
         Scene scene = new Scene(root);
