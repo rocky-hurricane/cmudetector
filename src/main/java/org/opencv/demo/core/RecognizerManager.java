@@ -66,6 +66,7 @@ public class RecognizerManager {
             labelsBuffer.put(counter++, 0, labelId);
         }
 
+        // set the recognizer
         faceRecognizer = RecognizerFactory.getRecognizer(RecognizerType.FISHER);
         /**
          *

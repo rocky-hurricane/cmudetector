@@ -19,6 +19,9 @@ import org.opencv.videoio.Videoio;
 
 import java.sql.*;
 import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainPageController {
@@ -56,21 +59,23 @@ public class MainPageController {
     Button newStudentButton;
     @FXML
     Button newGuestButton;
+    @FXML
+    ImageView video;
 
     private final VideoCapture camera = new VideoCapture();
     private Mat capturedImage = new Mat();
     private FxLogger fxLogger = new FxLogger();
+    private ScheduledExecutorService timer;
 
     @FXML
     public void initialize() throws Exception {
 
-        final Map<String, String[]> classifiersNames = Utils.loadClassifiers(Constants.CLASSIFIERS_PATH);
         DetectorsManager detectorsManager= new DetectorsManager(fxLogger);
 
 
         camera.open(0) ;
-        camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, 352);
-        camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, 288);
+        camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, 560);
+        camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, 420);
 
         // reads images from webcam
         camera.read(capturedImage);
@@ -87,6 +92,26 @@ public class MainPageController {
             System.out.println("-=-=-=-=-=-=-=-=-=-"+ImageUtils.mat2Image(capturedImage));
             this.photo.setImage(ImageUtils.mat2Image(capturedImage));
         }
+
+
+        Runnable frameGrabber = new Runnable() {
+            @Override
+            public void run()
+            {
+//                Image imageToShow = grabFrame();
+//                originalFrame.setImage(imageToShow);
+                camera.read(capturedImage);
+                if (!capturedImage.empty()){
+
+                    capturedImage = detectorsManager.detect(capturedImage);
+                    MainPageController.this.video.setImage(ImageUtils.mat2Image(capturedImage));
+                }
+
+            }
+        };
+
+        this.timer = Executors.newSingleThreadScheduledExecutor();
+        this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 
 
 

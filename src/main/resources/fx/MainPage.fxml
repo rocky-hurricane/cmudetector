@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/theme.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.MainPageController">
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/theme.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.MainPageController">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="187.0" layoutY="73.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -25,7 +25,10 @@
                               <Label alignment="CENTER" cacheShape="false" layoutX="70.0" layoutY="33.0" styleClass="label-header" text="Carnegie Mellon University Student Recognition System" textFill="#9d2222" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" />
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="687.0" prefWidth="671.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="687.0" prefWidth="671.0">
+                           <children>
+                              <ImageView fx:id="video" fitHeight="420.0" fitWidth="560.0" layoutX="-84.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="218.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0" />
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                </children>

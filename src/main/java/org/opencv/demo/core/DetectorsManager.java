@@ -79,14 +79,14 @@ public class DetectorsManager {
                     }
                     System.out.println("name+++++++:"+name);
                     // writes the name of the recognized person (sort of embossed)
-                    Point position = detectedElement.getPosition();
-                    position.y -= 11;
-                    position.x -= 1;
-                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, Constants.BLACK);
+//                    Point position = detectedElement.getPosition();
+//                    position.y -= 11;
+//                    position.x -= 1;
+//                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, Constants.BLACK);
 
-                    position.y += 1;
-                    position.x += 1;
-                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, colors[2]);
+//                    position.y += 1;
+//                    position.x += 1;
+//                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, colors[2]);
                 }
             }
         }
