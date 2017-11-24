@@ -96,7 +96,6 @@ public class RecognizerManager {
         faceRecognizer.predict(resizedGrayFace, labels, confidence);
 
         if (confidence[0] < Constants.FACE_RECOGNITION_THRESHOLD) {
-            System.out.println("hello"+ labels[0] + confidence[0]);
             return new RecognizedFace(idToNameMapping.get(labels[0]), confidence[0]);
         }
 

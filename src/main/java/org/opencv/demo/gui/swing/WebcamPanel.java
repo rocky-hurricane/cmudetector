@@ -72,7 +72,6 @@ public class WebcamPanel extends JPanel {
         @Override
         protected Object doInBackground() throws Exception {
 
-            System.out.println("-------" + capturedImage + "-------");
 
             while (!isCancelled()) {
 

@@ -35,7 +35,7 @@ public class BaseServiceImpl<T> implements BaseService<T>{
     }
 
     @Override
-    public T getEntity(int id) throws SQLException {
+    public T getEntity(String id) throws SQLException {
         return null;
     }
 

@@ -10,14 +10,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import org.opencv.core.Mat;
 import org.opencv.demo.core.DetectorsManager;
-import org.opencv.demo.gui.Utils;
 import org.opencv.demo.misc.Constants;
 import org.opencv.demo.misc.FxLogger;
 import org.opencv.demo.misc.ImageUtils;
+import org.opencv.demo.model.Student;
+import org.opencv.demo.service.impl.StudentServiceImpl;
 import org.opencv.videoio.VideoCapture;
 import org.opencv.videoio.Videoio;
 
+import java.io.File;
+import java.net.URL;
 import java.sql.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -61,98 +65,108 @@ public class MainPageController {
     Button newGuestButton;
     @FXML
     ImageView video;
+    @FXML
+    Button recognize;
 
     private final VideoCapture camera = new VideoCapture();
     private Mat capturedImage = new Mat();
     private FxLogger fxLogger = new FxLogger();
     private ScheduledExecutorService timer;
+    private String name = "";
+    DetectorsManager detectorsManager= new DetectorsManager(fxLogger);
+    private Map<Mat, String> detectResult = new HashMap<Mat, String>() ;
+    public MainPageController() throws Exception {}
 
     @FXML
     public void initialize() throws Exception {
 
-        DetectorsManager detectorsManager= new DetectorsManager(fxLogger);
+        //when initialize, recognizer will be assigned.
 
+        //initialize certain parameters and status. like detector, isActive, etc.
+        //-----------------initialize begin-----------------//
+        boolean isActive = detectorsManager.changeRecognizerStatus();
+        detectorsManager.clear();
+        detectorsManager.addDetector(Constants.DEFAULT_FACE_CLASSIFIER);
+        //-----------------initialize   end-----------------//
 
+        //open camera and set initialization parameters
         camera.open(0) ;
         camera.set(Videoio.CV_CAP_PROP_FRAME_WIDTH, 560);
         camera.set(Videoio.CV_CAP_PROP_FRAME_HEIGHT, 420);
 
-        // reads images from webcam
-        camera.read(capturedImage);
 
-        if (!capturedImage.empty()) {
-
-            // for recognizing a face, we need the face classifier only
-            detectorsManager.clear();
-            detectorsManager.addDetector(Constants.DEFAULT_FACE_CLASSIFIER);
-            boolean isActive = detectorsManager.changeRecognizerStatus();
-            // get the image potentially transformed by one or more detectors
-            capturedImage = detectorsManager.detect(capturedImage);
-
-            System.out.println("-=-=-=-=-=-=-=-=-=-"+ImageUtils.mat2Image(capturedImage));
-            this.photo.setImage(ImageUtils.mat2Image(capturedImage));
-        }
-
-
+        //grab the picture every 33 ms (30 frames/sec)
         Runnable frameGrabber = new Runnable() {
             @Override
-            public void run()
-            {
-//                Image imageToShow = grabFrame();
-//                originalFrame.setImage(imageToShow);
+            public void run(){
                 camera.read(capturedImage);
                 if (!capturedImage.empty()){
-
+//                    detectResult = detectorsManager.detect(capturedImage, name);
                     capturedImage = detectorsManager.detect(capturedImage);
                     MainPageController.this.video.setImage(ImageUtils.mat2Image(capturedImage));
                 }
-
             }
         };
-
+        //set the refresh interval
         this.timer = Executors.newSingleThreadScheduledExecutor();
         this.timer.scheduleAtFixedRate(frameGrabber, 0, 33, TimeUnit.MILLISECONDS);
 
 
-
         //---------------------------zahir start---------------------------
-        reason.setItems(FXCollections.observableArrayList(
-                "no specific reason", "stapler", "tuition fees", "complaints", "collect assignments", "meet prople", "others"));
-        reason.setValue("no specific reason");
-        choice();
-
-//        photo.setImage(new Image("http://www.marutaro.tw/marutaro/home/home_bg_M_down_photo.png"));
-        showPersonDetails("6666");
-        reasonField.setVisible(false);
-        reasonText.setVisible(false);
+//        reason.setItems(FXCollections.observableArrayList(
+//                "no specific reason", "stapler", "tuition fees", "complaints", "collect assignments", "meet prople", "others"));
+//        reason.setValue("no specific reason");
+//        choice();
+        photo.setImage(new Image("http://www.marutaro.tw/marutaro/home/home_bg_M_down_photo.png"));
+//        showPersonDetails("6666");
+//        reasonField.setVisible(false);
+//        reasonText.setVisible(false);
 
         //---------------------------zahir end---------------------------
     }
 
-    private void showPersonDetails(String studentID) {
-        String url = "jdbc:derby:StudentInfoDB";
-        String username = "root";
-        String password = "123456";
-        String query = "SELECT * FROM Student where studentid = ?";
 
+    private void showPersonDetails(String studentID) throws SQLException {
 
-        try (Connection con = DriverManager.getConnection(url, username, password)
-        ) {
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1,studentID);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-//            System.out.println(rs.getString("LastName"));
-            first.setText(rs.getString("FirstName"));
-            last.setText(rs.getString("LastName"));
-            studentIdText.setText(rs.getString("studentID"));
-            dob.setText(rs.getString("dob"));
-            gender.setText(rs.getString("gender"));
-            enrollmentYear.setText(rs.getString("enrollmentyear"));
-            program.setText(rs.getString("program"));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        StudentServiceImpl studentDao = new StudentServiceImpl();
+        Student student = studentDao.getEntity(name);
+        if (student != null){
+            first.setText(student.getFirstName());
+            last.setText(student.getLastName());
+            studentIdText.setText(student.getStudentId());
+            dob.setText(student.getDateBirth().toString());
+            gender.setText(student.getGender());
+            enrollmentYear.setText(student.getDateEnrollment());
+            program.setText(student.getProgram());
         }
+
+
+ //-----------------------zahir start------------------------------//
+//        String url = "jdbc:derby:StudentInfoDB";
+//        String username = "root";
+//        String password = "123456";
+//        String query = "SELECT * FROM Student where studentid = ?";
+//
+//
+//        try (Connection con = DriverManager.getConnection(url, username, password)
+//        ) {
+//            PreparedStatement stmt = con.prepareStatement(query);
+//            stmt.setString(1,studentID);
+//            ResultSet rs = stmt.executeQuery();
+//            rs.next();
+////            System.out.println(rs.getString("LastName"));
+//            first.setText(rs.getString("FirstName"));
+//            last.setText(rs.getString("LastName"));
+//            studentIdText.setText(rs.getString("studentID"));
+//            dob.setText(rs.getString("dob"));
+//            gender.setText(rs.getString("gender"));
+//            enrollmentYear.setText(rs.getString("enrollmentyear"));
+//            program.setText(rs.getString("program"));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        //-----------------------zahir end------------------------------//
+
     }
 
     @FXML
@@ -189,7 +203,24 @@ public class MainPageController {
     }
 
     //------------------------rocky start------------------------------//
+    @FXML
+    public void recognizeButtonAction() throws SQLException {
+//        for (Map.Entry entry :detectResult.entrySet()){
+//            name = entry.getValue().toString();
+//        }
+        name = detectorsManager.getName();
+        System.out.println("-------------->>>>>>>"+ name);
+        showPersonDetails(name);
 
+
+//        File file = new File(getClass().getProtectionDomain().getCodeSource().getLocation().getPath());
+//        String filePath = file.getPath();
+//        filePath = this.getClass().getResource("").getPath();
+//        System.out.println("----------->filePath"+filePath);
+
+//        URL dir_url = ClassLoader.getSystemResource(Constants.TRAINING_FACES_PATH);
+//        System.out.println(dir_url.toString());
+    }
 
 
 

@@ -28,6 +28,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="687.0" prefWidth="671.0">
                            <children>
                               <ImageView fx:id="video" fitHeight="420.0" fitWidth="560.0" layoutX="-84.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="218.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="48.0" />
+                              <Button fx:id="recognize" layoutX="269.0" layoutY="576.0" mnemonicParsing="false" onAction="#recognizeButtonAction" text="Recognize" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>

@@ -18,6 +18,7 @@ public class DetectorsManager {
     private RecognizerManager recognizerManager;
     int counter = 0;
     private boolean isRecognizerActive = false;
+    private String name;
 
     public DetectorsManager(RecognizerManager recognizerManager, Loggable logger) {
         this.recognizerManager = recognizerManager;
@@ -47,57 +48,57 @@ public class DetectorsManager {
         };
     }
 
-    public Mat detect(Mat capturedImage) {
+ public Mat detect(Mat capturedImage) {
 
-        List<DetectedElement> detectedElements;
+     List<DetectedElement> detectedElements;
 
-        // loops over all the activated detectors
-        for (ElementsDetector detector: detectors.values()) {
+     // loops over all the activated detectors
+     for (ElementsDetector detector: detectors.values()) {
 
-            System.out.println("detector--"+detector);
-            // gets the elements detected by this detector
-            detectedElements = detector.detectElements(capturedImage);
-            for (DetectedElement detectedElement: detectedElements) {
+         // gets the elements detected by this detector
+         detectedElements = detector.detectElements(capturedImage);
+         for (DetectedElement detectedElement: detectedElements) {
 
-                // gets the image transformed by the detector
-                capturedImage = detectedElement.getTransformedImage();
+             // gets the image transformed by the detector
+             capturedImage = detectedElement.getTransformedImage();
 
-                // if has to recognize a face
-                if (isRecognizerActive && detectedElement != null && detectedElement.getDetectedImageElement() != null) {
+             // if has to recognize a face
+             if (isRecognizerActive && detectedElement != null && detectedElement.getDetectedImageElement() != null) {
 
-                    assert(detectors.size() == 1 && detectors.containsKey(Constants.DEFAULT_FACE_CLASSIFIER));
+                 assert(detectors.size() == 1 && detectors.containsKey(Constants.DEFAULT_FACE_CLASSIFIER));
+                 // String name;
+                 // recognizes the face
+                 RecognizedFace recognizedFace = recognizerManager.recognizeFace(detectedElement.getDetectedImageElement());
+                 if (recognizedFace == Constants.UNKNOWN_FACE) {
+                     name = recognizedFace.getName();
+                 }
+                 else {
+                     int percentage = (int)(100 * (Constants.FACE_RECOGNITION_THRESHOLD - recognizedFace.getConfidence()) / Constants.FACE_RECOGNITION_THRESHOLD);
+                     //name = recognizedFace.getName() + "  [" + percentage + "%]";
+                     name = recognizedFace.getName().trim();
+                 }
+                    //writes the name of the recognized person (sort of embossed)
+                    Point position = detectedElement.getPosition();
+                    position.y -= 11;
+                    position.x -= 1;
+                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, Constants.BLACK);
+                    position.y += 1;
+                    position.x += 1;
+                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, colors[2]);
+             }
+         }
+     }
+     return capturedImage;
+ }
 
-                    // recognizes the face
-                    RecognizedFace recognizedFace = recognizerManager.recognizeFace(detectedElement.getDetectedImageElement());
-                    String name;
-                    if (recognizedFace == Constants.UNKNOWN_FACE) {
-                        name = recognizedFace.getName();
-                    }
-                    else {
-                        int percentage = (int)(100 * (Constants.FACE_RECOGNITION_THRESHOLD - recognizedFace.getConfidence()) / Constants.FACE_RECOGNITION_THRESHOLD);
-                        name = recognizedFace.getName() + "  [" + percentage + "%]";
-                    }
-                    System.out.println("name+++++++:"+name);
-                    // writes the name of the recognized person (sort of embossed)
-//                    Point position = detectedElement.getPosition();
-//                    position.y -= 11;
-//                    position.x -= 1;
-//                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, Constants.BLACK);
-
-//                    position.y += 1;
-//                    position.x += 1;
-//                    Imgproc.putText(capturedImage, name, position, Core.FONT_HERSHEY_TRIPLEX, Constants.RECOGNIZED_NAME_FONT_SIZE, colors[2]);
-                }
-            }
-        }
-
-        return capturedImage;
+    public String getName(){
+        return name;
     }
+
 
     public void addDetector(String detectorName) {
         counter ++;
         ElementsDetector detector = new ElementsDetector(detectorName, logger, colors[counter%colors.length]);
-        System.out.println("detectorName-=-=-=-=-=-="+detectorName);
         detectors.put(detectorName, detector);
     }
 

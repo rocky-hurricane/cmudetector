@@ -15,7 +15,7 @@ import java.util.List;
 public class StudentServiceImpl extends BaseServiceImpl<Student> implements StudentService{
 
 
-    int studentId;
+    String studentId;
     String firstName;
     String lastName;
     String gender;
@@ -48,7 +48,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     }
 
     @Override
-    public Student getEntity(int id) throws SQLException {
+    public Student getEntity(String id) throws SQLException {
         String sql = "select student_id studentId, first_name firstName, last_name lastName, " +
                 "gender, program, date_birth dateBirth, date_enrollment dateEnrollment from student where student_id = ?";
         return (Student) dao.get(connection, sql, id);

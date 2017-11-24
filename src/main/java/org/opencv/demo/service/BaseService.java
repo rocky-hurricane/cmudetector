@@ -12,7 +12,7 @@ public interface BaseService<T> {
     public void saveEntity(T t) throws SQLException;
     public void updateEntity(T t) throws SQLException;
     public void deleteEntity(T t) throws SQLException;
-    public T getEntity(int id) throws SQLException;
+    public T getEntity(String id) throws SQLException;
     public List<T> getEntityBySQL(String sql, Object ... objects);
 
 }

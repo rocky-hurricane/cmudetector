@@ -48,7 +48,7 @@ public class UserCaptureDialog extends JDialog {
         SpringLayout sl = new SpringLayout();
         setLayout(sl);
 
-        // train button
+        // train button--"save images"
         trainButton = new JButton(LABEL_TRAIN_BUTTON);
         trainButton.addActionListener(e -> train());
         trainButton.setEnabled(false);
@@ -186,7 +186,8 @@ public class UserCaptureDialog extends JDialog {
 
     private class PictureGrabber extends SwingWorker {
 
-        private final static int PHOTO_DELAY = 1000;
+        //original setted as 1000
+        private final static int PHOTO_DELAY = 100;
 
         @Override
         protected Void doInBackground() throws Exception {
