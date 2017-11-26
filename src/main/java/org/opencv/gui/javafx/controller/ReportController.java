@@ -9,11 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.opencv.demo.dao.tools.JDBCTools;
 import org.opencv.demo.model.StudentRecord;
+import org.opencv.demo.service.impl.StudentRecordServiceImpl;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class ReportController {
 
@@ -32,9 +35,6 @@ public class ReportController {
 
     @FXML
     ChoiceBox<String> chooseGender;
-
-//    @FXML
-//    ChoiceBox<String> chooseReason;
 
     @FXML
     TableView recordTable;
@@ -93,7 +93,9 @@ public class ReportController {
     }
 
     @FXML
-    public void dispResult(){
+    public void dispResult() throws SQLException {
+        StudentRecordServiceImpl studentRecordService = new StudentRecordServiceImpl();
+        ArrayList objects = new ArrayList();
         //1.根据条件查询
         //2.使用查询到的数据创建record对象
         //3.将对象存入data列表
@@ -101,42 +103,49 @@ public class ReportController {
         LocalDate endDate = endDatePicker.getValue();
         String program = chooseProgram.getValue();
         String gender = chooseGender.getValue();
-        try(Connection con = DriverManager.getConnection("jdbc:derby:ReceptionDB", "user1", "1234")
-        ) {
-            String query = "select id, firstname, lastname, gender, program, dateofvisit, timeofvisit, reason " +
-                    "from (record left join student on record.id = student.studentid) " +
-                    "where dateofvisit between ? and ?";
+
+        Connection con = JDBCTools.getConnection();
+
+        String query = "SELECT record.student_id, first_name, last_name, gender, program, date_visit, time_visit, reason " +
+                "From record, student WHERE student.student_id = record.student_id " +
+                "AND record.date_visit BETWEEN ? and ?";
+
+
             PreparedStatement pStmt = con.prepareStatement(query);
             pStmt.setDate(1, Date.valueOf(startDate));
             pStmt.setString(2, String.valueOf(endDate));
+//        objects.add(startDate);
+//        objects.add(endDate);
+
             if (!program.equals("All")){
-                query += "and program = ?";
+                query += " and program = ?";
                 pStmt = con.prepareStatement(query);
                 pStmt.setDate(1, Date.valueOf(startDate));
                 pStmt.setString(2, String.valueOf(endDate));
                 pStmt.setString(3,program);
+//                objects.add(program);
                 if (!gender.equals("All")){
-                    query += "and gender = ?";
+                    query += " and gender = ?";
                     pStmt = con.prepareStatement(query);
                     pStmt.setDate(1, Date.valueOf(startDate));
                     pStmt.setString(2, String.valueOf(endDate));
                     pStmt.setString(3,program);
                     pStmt.setString(4,gender);
+//                    objects.add(gender);
                 }
             }
             else if (!gender.equals("All")){
-                query += "and gender = ?";
+                query += " and gender = ?";
                 pStmt = con.prepareStatement(query);
                 pStmt.setDate(1, Date.valueOf(startDate));
                 pStmt.setString(2, String.valueOf(endDate));
                 pStmt.setString(3,gender);
+//                objects.add(gender);
             }
+
             ResultSet rs = pStmt.executeQuery();
             addToList(rs);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
 
         studentIDCol.setCellValueFactory(
@@ -178,14 +187,14 @@ public class ReportController {
         try {
             data.clear();
             while (rs.next()) {
-                id = rs.getString("id");
-                firstName = rs.getString("FirstName");
-                lastName = rs.getString("LastName");
+                id = rs.getString("student_id");
+                firstName = rs.getString("first_name");
+                lastName = rs.getString("last_name");
                 gender = rs.getString("gender");
                 program = rs.getString("program");
-                date = rs.getDate("dateofvisit");
-                time = rs.getTime("timeofvisit");
-                reason = "test";
+                date = rs.getDate("date_visit");
+                time = rs.getTime("time_visit");
+                reason =rs.getString("reason");
                 StudentRecord studentRecord = new StudentRecord(id,firstName,lastName,gender,program,date,time,reason);
                 data.add(studentRecord);
 

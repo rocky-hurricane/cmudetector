@@ -40,7 +40,7 @@ public class BaseServiceImpl<T> implements BaseService<T>{
     }
 
     @Override
-    public List<T> getEntityBySQL(String sql, Object... objects) {
+    public List<T> getEntityBySQL(String sql, Object... objects) throws SQLException {
         return null;
     }
 
