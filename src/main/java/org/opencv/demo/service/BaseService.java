@@ -14,5 +14,6 @@ public interface BaseService<T> {
     public void deleteEntity(T t) throws SQLException;
     public T getEntity(String id) throws SQLException;
     public List<T> getEntityBySQL(String sql, Object ... objects);
+    public <E> E getForValue(String sql, Object ... objects) throws SQLException;
 
 }

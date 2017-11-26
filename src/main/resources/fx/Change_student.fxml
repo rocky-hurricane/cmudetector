@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.ChangeStudentController">
    <children>
       <Button fx:id="save" layoutX="297.0" layoutY="151.0" mnemonicParsing="false" onAction="#saveText" text="SAVE" />

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class ReportController {
 
-    ObservableList<Record> data =
+    ObservableList<StudentRecord> data =
             FXCollections.observableArrayList();
 
 

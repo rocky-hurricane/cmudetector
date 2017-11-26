@@ -7,7 +7,7 @@ import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Record{
+public class StudentRecord {
     private final StringProperty studentID;
     private final StringProperty firstName;
     private final StringProperty lastName;
@@ -17,7 +17,7 @@ public class Record{
     private final StringProperty time;
     private final StringProperty reason;
 
-    Record(String id, String first, String last, String gender, String program, Date date, Time time, String reason){
+    StudentRecord(String id, String first, String last, String gender, String program, Date date, Time time, String reason){
         this.studentID = new SimpleStringProperty(id);
         this.firstName = new SimpleStringProperty(first);
         this.lastName = new SimpleStringProperty(last);

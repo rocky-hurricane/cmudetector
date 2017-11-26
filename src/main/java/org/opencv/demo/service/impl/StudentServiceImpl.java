@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Description Created by rocky on 13/11/2017.
  */
-public class StudentServiceImpl extends BaseServiceImpl<Student> implements StudentService{
+public class StudentServiceImpl extends BaseServiceImpl<Student>{
 
 
     String studentId;
@@ -50,13 +50,19 @@ public class StudentServiceImpl extends BaseServiceImpl<Student> implements Stud
     @Override
     public Student getEntity(String id) throws SQLException {
         String sql = "select student_id studentId, first_name firstName, last_name lastName, " +
-                "gender, program, date_birth dateBirth, date_enrollment dateEnrollment from student where student_id = ?";
+                "gender, program, date_birth dateBirth, date_enrollment dateEnrollment, profile from student where student_id = ?";
         return (Student) dao.get(connection, sql, id);
     }
 
     @Override
     public List<Student> getEntityBySQL(String sql, Object... objects) {
         return null;
+    }
+
+    @Override
+    public <E> E getForValue(String sql, Object ... objects) throws SQLException {
+
+        return (E) dao.getForValue(connection, sql, objects);
     }
 
     public void setStudent(Student student){

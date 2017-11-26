@@ -74,7 +74,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Text fx:id="last" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Text fx:id="last" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="First name" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Last name" GridPane.rowIndex="2" />
@@ -85,17 +85,17 @@
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Total visit times" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reason for visit" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                     <ChoiceBox fx:id="reason" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <Text fx:id="first" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Text fx:id="first" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Enrollment Year" GridPane.columnIndex="2" />
-                                    <Text fx:id="studentIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" />
-                                    <Text fx:id="dob" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Text fx:id="enrollmentYear" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" />
-                                    <Text fx:id="program" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <Text fx:id="lastVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <Text fx:id="totalVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <Text fx:id="gender" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Text fx:id="studentIdText" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" />
+                                    <Text fx:id="dob" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <Text fx:id="enrollmentYear" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" />
+                                    <Text fx:id="program" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Text fx:id="lastVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <Text fx:id="totalVisit" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Text fx:id="gender" strokeType="OUTSIDE" strokeWidth="0.0" text="" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                     <TextField fx:id="reasonField" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                    <Text fx:id="reasonText" strokeType="OUTSIDE" strokeWidth="0.0" text="                       Please specify the reason" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <Text fx:id="reasonText" strokeType="OUTSIDE" strokeWidth="0.0" text="                  Please specify the reason" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                               </GridPane>
                               <GridPane layoutX="14.0" layoutY="332.0" prefHeight="33.0" prefWidth="567.0">
@@ -112,9 +112,9 @@
                                 </rowConstraints>
                                  <children>
                                     <Button fx:id="newStudentButton" mnemonicParsing="false" onAction="#newStudentButtonAction" prefHeight="40.0" prefWidth="134.0" text="New student" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Button fx:id="approveButton" mnemonicParsing="false" prefHeight="33.0" prefWidth="148.0" stylesheets="@css/theme.css" text="Approved" GridPane.rowIndex="2" />
+                                    <Button fx:id="approveButton" mnemonicParsing="false" onAction="#approveButtonAction" prefHeight="33.0" prefWidth="148.0" stylesheets="@css/theme.css" text="Approved" GridPane.rowIndex="2" />
                                     <Button fx:id="changeStudentButton" mnemonicParsing="false" onAction="#changeStudentButtonAction" prefHeight="33.0" prefWidth="180.0" text="Manual Adjustment" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Button fx:id="newGuestButton" mnemonicParsing="false" onAction="#setNewGuestButton" prefHeight="33.0" prefWidth="154.0" text="New guest" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <Button fx:id="reportButton" mnemonicParsing="false" onAction="#reportButtonAction" prefHeight="33.0" prefWidth="154.0" text="Report" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                                  </children>
                               </GridPane>
                            </children>

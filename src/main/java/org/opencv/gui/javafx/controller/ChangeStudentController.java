@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -26,13 +27,24 @@ public class ChangeStudentController {
         studentID.setText("");
     }
 
+    public MainPageController mainPageController;
+
+
     @FXML
-    public void saveText(){
+    public void saveText() throws Exception {
 //        mainapp.showStudentEditDialog();
+        String studentID = this.studentID.getText();
+//        new MainPageController().showPersonDetails(studentID);
+//        mainPageController.name = studentID;
+
+//        MainPageController mainPageController = (MainPageController)new FXMLLoader().getController();
+        System.out.println("this---->"+mainPageController);
+        mainPageController.showPersonDetails(studentID);
         Stage temp = (Stage) save.getScene().getWindow();
         temp.close();
     }
 
+    @FXML
     public void showChangeStudentPage(){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fx/Change_student.fxml"));

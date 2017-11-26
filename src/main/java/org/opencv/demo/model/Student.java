@@ -14,6 +14,11 @@ public class Student {
     String program;
     java.sql.Date dateBirth;
     String dateEnrollment;
+    String profile;
+
+    public String getProfile(){return  profile;}
+
+    public void setProfile(String profile){this.profile = profile;}
 
     public String getStudentId() {
         return studentId;

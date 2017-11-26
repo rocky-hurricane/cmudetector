@@ -43,4 +43,9 @@ public class BaseServiceImpl<T> implements BaseService<T>{
     public List<T> getEntityBySQL(String sql, Object... objects) {
         return null;
     }
+
+    @Override
+    public <E> E getForValue(String sql, Object ... objects) throws SQLException {
+        return null;
+    }
 }
