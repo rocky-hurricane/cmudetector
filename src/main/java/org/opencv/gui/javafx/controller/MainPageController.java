@@ -206,21 +206,26 @@ public class MainPageController {
 
     @FXML
     private void changeStudentButtonAction() throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fx/Change_student.fxml"));
         Pane page = loader.load();
-
         Stage stage = new Stage();
-
         Scene scene = new Scene(page);
         stage.setScene(scene);
-
         stage.show();
-
         changeStudentController = loader.getController();
         changeStudentController.mainPageController = this;
-
     }
+
+    @FXML
+    private void reportButtonAction() throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("/fx/Report.fxml")));
+        Pane page = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
     private void approveButtonAction() throws SQLException, MalformedURLException {
@@ -240,18 +245,12 @@ public class MainPageController {
 
     }
 
-
-
     @FXML
     private void newStudentButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         new StudentPageController().showStudentPage();
     }
-    @FXML
-    private void reportButtonAction() {
-        System.out.println("You clicked me!");
-        new GuestPageController().showGuestPage();
-    }
+
 
     public void choice() {
         reason.getSelectionModel()

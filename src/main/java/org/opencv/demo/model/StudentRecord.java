@@ -1,4 +1,4 @@
-package org.opencv.gui.javafx.controller;
+package org.opencv.demo.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -17,7 +17,7 @@ public class StudentRecord {
     private final StringProperty time;
     private final StringProperty reason;
 
-    StudentRecord(String id, String first, String last, String gender, String program, Date date, Time time, String reason){
+    public StudentRecord(String id, String first, String last, String gender, String program, Date date, Time time, String reason){
         this.studentID = new SimpleStringProperty(id);
         this.firstName = new SimpleStringProperty(first);
         this.lastName = new SimpleStringProperty(last);

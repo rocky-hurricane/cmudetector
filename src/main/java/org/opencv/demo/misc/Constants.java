@@ -16,7 +16,7 @@ public class Constants {
     public static int TRAIN_FACE_IMAGE_HEIGHT = 140;
     public static int TRAIN_FACE_IMAGE_WIDTH = TRAIN_FACE_IMAGE_HEIGHT;
     public static Size TRAIN_FACE_IMAGE_SIZE = new Size( (double) TRAIN_FACE_IMAGE_HEIGHT, (double)TRAIN_FACE_IMAGE_HEIGHT);
-    public static double FACE_RECOGNITION_THRESHOLD = 1000;
+    public static double FACE_RECOGNITION_THRESHOLD = 11000;
 
     public static int MAX_IMAGES_NUMBER_FOR_TRAINING = 50;
     public static String DEFAULT_FACE_CLASSIFIER = "/data/haarcascades/haarcascade_frontalface_alt.xml";
