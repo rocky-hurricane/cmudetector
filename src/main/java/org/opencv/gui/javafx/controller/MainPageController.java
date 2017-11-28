@@ -48,6 +48,8 @@ public class MainPageController {
     @FXML
     ChoiceBox<String> reason;
     @FXML
+    Text lastReason;
+    @FXML
     Text first;
     @FXML
     Text last;
@@ -79,6 +81,7 @@ public class MainPageController {
     ImageView video;
     @FXML
     Button recognize;
+
 
     private final VideoCapture camera = new VideoCapture();
     private Mat capturedImage = new Mat();
@@ -153,6 +156,7 @@ public class MainPageController {
             photo.setImage(null);
             lastVisit.setText(null);
             totalVisit.setText(null);
+            lastReason.setText(null);
         }
 
         StudentServiceImpl studentDao = new StudentServiceImpl();
@@ -165,15 +169,25 @@ public class MainPageController {
             gender.setText(student.getGender());
             enrollmentYear.setText(student.getDateEnrollment());
             program.setText(student.getProgram());
+//            lastReason.setText(student.);
             photo.setImage(new Image(String.valueOf(new File(student.getProfile()).toURI().toURL())));
             String sql = "select max(date_visit) from record where student_id = ?";
             java.sql.Date date = studentDao.getForValue(sql, studentID);
             if (date == null){
                 lastVisit.setText("new commer");
             }else{
+                sql = "Select reason FROM record WHERE time_visit = ("
+                        + "SELECT max(time_visit) FROM record WHERE record.date_visit = ("
+                        + "SELECT max(date_visit) FROM record WHERE record.student_id=?))"
+                        + "AND date_visit = (SELECT max(date_visit) FROM record WHERE record.student_id=?)"
+                        + "AND record.student_id=?";
+                String lastReason = studentDao.getForValue(sql, studentID,studentID,studentID);
                 lastVisit.setText(date.toString());
+                this.lastReason.setText(lastReason);
             }
             sql = "select count(*) from record where student_id = ?";
+
+
             Long count = studentDao.getForValue(sql, studentID);
             totalVisit.setText(Long.toString(count));
 
