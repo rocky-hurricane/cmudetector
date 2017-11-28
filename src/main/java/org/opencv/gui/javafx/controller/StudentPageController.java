@@ -17,6 +17,8 @@ import org.opencv.demo.core.ElementsDetector;
 import org.opencv.demo.misc.Constants;
 import org.opencv.demo.misc.FxLogger;
 import org.opencv.demo.misc.ImageUtils;
+import org.opencv.demo.model.Student;
+import org.opencv.demo.service.impl.StudentServiceImpl;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -144,15 +146,26 @@ public class StudentPageController {
 
     @FXML
     public void saveText() throws Exception {
-        String id = studentID.getText();
-        String first = this.first.getText();
-        String last = this.last.getText();
+        Student student = new Student();
+
+        student.setStudentId(this.studentID.getText());
+        student.setFirstName(this.first.getText());
+        student.setLastName(this.last.getText());
         LocalDate dob = this.dob.getValue();
-        String gender = this.gender.getValue();
-        String program = this.program.getValue();
-//        Student student = new Student(id, first, last, dob, gender, program);
-//        insert(id, first, last, dob, gender, program);
-        saveStatus.setText(first + " " + last + "'s information is saved.");
+        Date birth_date = Date.valueOf(dob);
+        student.setDateBirth(birth_date);
+        student.setGender(this.gender.getValue());
+        student.setProgram(this.program.getValue());
+        student.setDateEnrollment(this.enrollment.getText());
+        student.setProfile(Constants.FACES_FILE_PATH+File.separatorChar+this.studentID.getText() + "_10");
+
+        StudentServiceImpl studentService = new StudentServiceImpl();
+        try {
+            studentService.saveEntity(student);
+        }catch (Exception e){
+            saveStatus.setText("error occurs");
+        }
+        saveStatus.setText(first.getText() + " " + last.getText() + "'s information is saved.");
         int counter=0;
         for (BufferedImage capturedFace : capturedFaces){
             ImageIO.write(capturedFace, "JPG", new File(Constants.FACES_FILE_PATH + File.separatorChar + this.studentID.getText() + "_" + (counter++) + ".jpg"));
@@ -166,30 +179,6 @@ public class StudentPageController {
 
 
 
-    public void insert(String id, String first, String last, LocalDate dob, String gender, String program){
-        try(Connection con = DriverManager.getConnection("jdbc:derby:ReceptionDB", "user1", "1234")
-        ) {
-            String query = "insert into student values(?,?,?,?,?,?)";
-            PreparedStatement pStmt = con.prepareStatement(query);
-            pStmt.setString(1, id);
-            pStmt.setString(2,first);
-            pStmt.setString(3,last);
-            pStmt.setDate(4, java.sql.Date.valueOf(dob));
-            pStmt.setString(5,gender);
-            pStmt.setString(6,program);
-            pStmt.executeUpdate();
-            String query2 = "insert into record values(?,?,?)";
-            PreparedStatement pStmt2 = con.prepareStatement(query2);
-            pStmt2.setDate(1, java.sql.Date.valueOf(LocalDate.now()));
-            pStmt2.setTime(2, Time.valueOf(LocalTime.now()));
-            pStmt2.setString(3,id);
-            pStmt2.executeUpdate();
-            System.out.println("Saved");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     public void initialize(){

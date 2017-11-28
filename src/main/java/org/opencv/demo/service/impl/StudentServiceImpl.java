@@ -22,6 +22,7 @@ public class StudentServiceImpl extends BaseServiceImpl<Student>{
     String program;
     java.sql.Date dateBirth;
     String dateEnrollment;
+    String profile;
 
     public StudentServiceImpl() throws SQLException {
         dao = new StudentDaoImpl();
@@ -30,8 +31,8 @@ public class StudentServiceImpl extends BaseServiceImpl<Student>{
     @Override
     public void saveEntity(Student student) throws SQLException {
         setStudent(student);
-        String sql = "insert into student values(?,?,?,?,?,?,?)";
-        dao.update(connection, sql, studentId, firstName, lastName, gender, program, dateBirth, dateEnrollment );
+        String sql = "insert into student values(?,?,?,?,?,?,?,?)";
+        dao.update(connection, sql, studentId, firstName, lastName, gender, program, dateBirth, dateEnrollment, profile );
     }
 
     @Override
@@ -73,5 +74,6 @@ public class StudentServiceImpl extends BaseServiceImpl<Student>{
         program = student.getProgram();
         dateBirth = student.getDateBirth();
         dateEnrollment = student.getDateEnrollment();
+        profile = student.getProfile();
     }
 }
