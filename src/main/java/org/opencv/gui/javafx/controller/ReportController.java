@@ -149,7 +149,7 @@ public class ReportController {
 
 
         studentIDCol.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
+                new PropertyValueFactory<>("studentID"));
 
         firstNameCol.setCellValueFactory(
                 new PropertyValueFactory<>("firstName"));

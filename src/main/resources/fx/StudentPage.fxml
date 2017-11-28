@@ -14,15 +14,13 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.StudentPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.opencv.gui.javafx.controller.StudentPageController">
    <opaqueInsets>
       <Insets />
    </opaqueInsets>
    <children>
-      <ImageView fx:id="photo" fitHeight="150.0" fitWidth="100.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Pictures/DD%20headshot.jpg" />
-         </image>
+      <ImageView fx:id="photo" fitHeight="140.0" fitWidth="272.0" layoutX="31.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="97.0">
+
       </ImageView>
       <Button fx:id="save" layoutX="313.0" layoutY="528.0" mnemonicParsing="false" onAction="#saveText" text="SAVE" />
       <GridPane layoutX="42.0" layoutY="169.0" prefHeight="340.0" prefWidth="342.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
@@ -53,13 +51,14 @@
             <DatePicker fx:id="dob" prefHeight="26.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Gender" GridPane.rowIndex="4" />
             <Label text="Program" GridPane.rowIndex="5" />
-            <Label text="Reason for visiting" GridPane.rowIndex="6" />
-            <ChoiceBox fx:id="reason" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="gender" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="program" prefHeight="26.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label  text="Enrollment year" GridPane.rowIndex="6" />
+            <TextField fx:id="enrollment" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <Button fx:id="clear" layoutX="46.0" layoutY="528.0" mnemonicParsing="false" onAction="#clearText" text="CLEAR" />
       <Text fx:id="saveStatus" layoutX="93.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="214.4000244140625" />
+      <Button fx:id="captureButton" layoutX="167.0" layoutY="528.0" mnemonicParsing="false" text="CAPTURE" onAction="#captureButtonAction" />
    </children>
 </AnchorPane>

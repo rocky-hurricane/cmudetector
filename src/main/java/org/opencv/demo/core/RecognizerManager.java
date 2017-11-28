@@ -33,7 +33,7 @@ public class RecognizerManager {
 //        URL dir_url = ClassLoader.getSystemResource(Constants.TRAINING_FACES_PATH);
 //        File trainingDir = new File(dir_url.toURI());
         // /Users/rocky/Documents/faces
-        File trainingDir = new File("/Users/rocky/Documents/faces");
+        File trainingDir = new File(Constants.FACES_FILE_PATH);
 
         /**
          * put the files ended with jpg, png, pgm into a File[]

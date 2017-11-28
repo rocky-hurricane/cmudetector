@@ -7,6 +7,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import org.opencv.core.Core;
 
+import java.util.ArrayList;
+
 import static javafx.application.Application.launch;
 
 public class MainApp extends Application{

@@ -10,13 +10,14 @@ public class Constants {
     public static final float VERSION = 0.1f;
     public static final String OPENCVDEMO_COMPLETE = OPENCVDEMO + " v" + VERSION;
 
-    public static final int MINIMUM_TRAIN_SET_SIZE = 20;
+    public static final int MINIMUM_TRAIN_SET_SIZE = 25;
     public static final String CLASSIFIERS_PATH = "data";
     public static final String TRAINING_FACES_PATH = "faces";
     public static int TRAIN_FACE_IMAGE_HEIGHT = 140;
     public static int TRAIN_FACE_IMAGE_WIDTH = TRAIN_FACE_IMAGE_HEIGHT;
     public static Size TRAIN_FACE_IMAGE_SIZE = new Size( (double) TRAIN_FACE_IMAGE_HEIGHT, (double)TRAIN_FACE_IMAGE_HEIGHT);
     public static double FACE_RECOGNITION_THRESHOLD = 11000;
+    public static final String FACES_FILE_PATH ="/Users/rocky/Documents/faces";
 
     public static int MAX_IMAGES_NUMBER_FOR_TRAINING = 50;
     public static String DEFAULT_FACE_CLASSIFIER = "/data/haarcascades/haarcascade_frontalface_alt.xml";

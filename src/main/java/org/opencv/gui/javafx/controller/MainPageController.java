@@ -82,12 +82,13 @@ public class MainPageController {
 
     private final VideoCapture camera = new VideoCapture();
     private Mat capturedImage = new Mat();
-    private FxLogger fxLogger = new FxLogger();
+    protected FxLogger fxLogger = new FxLogger();
     private ScheduledExecutorService timer;
     public String studentID = "";
     DetectorsManager detectorsManager= new DetectorsManager(fxLogger);
     private Map<Mat, String> detectResult = new HashMap<Mat, String>() ;
     public ChangeStudentController changeStudentController;
+    public StudentPageController studentPageController;
 
     public MainPageController() throws Exception {}
 
@@ -226,6 +227,20 @@ public class MainPageController {
         stage.show();
     }
 
+    @FXML
+    private void newStudentButtonAction() throws Exception {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("/fx/StudentPage.fxml")));
+        Pane page = loader.load();
+        Stage stage = new Stage();
+        Scene scene = new Scene(page);
+        stage.setScene(scene);
+        stage.show();
+        studentPageController = loader.getController();
+//        studentPageController.detectorsManager = this.detectorsManager;
+        studentPageController.mainPageController = this;
+    }
+
+
 
     @FXML
     private void approveButtonAction() throws SQLException, MalformedURLException {
@@ -245,11 +260,6 @@ public class MainPageController {
 
     }
 
-    @FXML
-    private void newStudentButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        new StudentPageController().showStudentPage();
-    }
 
 
     public void choice() {
