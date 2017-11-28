@@ -157,7 +157,7 @@ public class StudentPageController {
         student.setGender(this.gender.getValue());
         student.setProgram(this.program.getValue());
         student.setDateEnrollment(this.enrollment.getText());
-        student.setProfile(Constants.FACES_FILE_PATH+File.separatorChar+this.studentID.getText() + "_10");
+        student.setProfile(Constants.FACES_FILE_PATH+File.separatorChar+this.studentID.getText() + "_10.jpg");
 
         StudentServiceImpl studentService = new StudentServiceImpl();
         try {

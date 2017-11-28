@@ -168,10 +168,15 @@ public class MainPageController {
             photo.setImage(new Image(String.valueOf(new File(student.getProfile()).toURI().toURL())));
             String sql = "select max(date_visit) from record where student_id = ?";
             java.sql.Date date = studentDao.getForValue(sql, studentID);
-            lastVisit.setText(date.toString());
+            if (date == null){
+                lastVisit.setText("new commer");
+            }else{
+                lastVisit.setText(date.toString());
+            }
             sql = "select count(*) from record where student_id = ?";
             Long count = studentDao.getForValue(sql, studentID);
             totalVisit.setText(Long.toString(count));
+
         }
 
 

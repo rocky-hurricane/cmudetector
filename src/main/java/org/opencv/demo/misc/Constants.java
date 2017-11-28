@@ -16,7 +16,7 @@ public class Constants {
     public static int TRAIN_FACE_IMAGE_HEIGHT = 140;
     public static int TRAIN_FACE_IMAGE_WIDTH = TRAIN_FACE_IMAGE_HEIGHT;
     public static Size TRAIN_FACE_IMAGE_SIZE = new Size( (double) TRAIN_FACE_IMAGE_HEIGHT, (double)TRAIN_FACE_IMAGE_HEIGHT);
-    public static double FACE_RECOGNITION_THRESHOLD = 11000;
+    public static double FACE_RECOGNITION_THRESHOLD = 15000;
     public static final String FACES_FILE_PATH ="/Users/rocky/Documents/faces";
 
     public static int MAX_IMAGES_NUMBER_FOR_TRAINING = 50;
