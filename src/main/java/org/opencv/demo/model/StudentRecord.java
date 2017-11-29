@@ -1,5 +1,7 @@
 package org.opencv.demo.model;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,6 +18,7 @@ public class StudentRecord {
     private final StringProperty date;
     private final StringProperty time;
     private final StringProperty reason;
+    private final IntegerProperty frequency;
 
     public StudentRecord(String id, String first, String last, String gender, String program, Date date, Time time, String reason){
         this.studentID = new SimpleStringProperty(id);
@@ -26,6 +29,32 @@ public class StudentRecord {
         this.date = new SimpleStringProperty(new SimpleDateFormat("yyyy-MM-dd").format(date));
         this.time = new SimpleStringProperty(new SimpleDateFormat("HH:mm:ss").format(time));
         this.reason = new SimpleStringProperty(reason);
+        this.frequency = new SimpleIntegerProperty(0);
+
+    }
+
+    public StudentRecord(String id,int frequency, String first, String last, String gender, String program){
+        this.studentID = new SimpleStringProperty(id);
+        this.firstName = new SimpleStringProperty(first);
+        this.lastName = new SimpleStringProperty(last);
+        this.gender = new SimpleStringProperty(gender);
+        this.program = new SimpleStringProperty(program);
+        this.frequency = new SimpleIntegerProperty(frequency);
+        this.date = new SimpleStringProperty(null);
+        this.time = new SimpleStringProperty(null);
+        this.reason = new SimpleStringProperty(null);
+    }
+
+    public int getFrequency() {
+        return frequency.get();
+    }
+
+    public IntegerProperty frequencyProperty() {
+        return frequency;
+    }
+
+    public void setFrequency(int frequency) {
+        this.frequency.set(frequency);
     }
 
     public String getStudentID() {
